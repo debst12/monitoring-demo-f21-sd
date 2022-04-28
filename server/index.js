@@ -32,26 +32,6 @@ app.post('/api/student', (req, res)=>{
     let {name} = req.body
     name = name.trim()
 
-    students.push(name)
-
-    res.status(200).send(students)
-})
-
-app.post('/api/student', (req, res)=>{
-    let {name} = req.body
-    name = name.trim()
-
-    students.push(name)
-
-    rollbar.log('Student added successfully', {author: 'Scott', type: 'manual entry'})
-
-    res.status(200).send(students)
-})
-
-app.post('/api/student', (req, res)=>{
-    let {name} = req.body
-    name = name.trim()
-
     const index = students.findIndex(studentName=> studentName === name)
 
     if(index === -1 && name !== ''){
@@ -70,6 +50,8 @@ app.post('/api/student', (req, res)=>{
 
 
 const port = process.env.PORT || 4545
+
+
 app.use(rollbar.errorHandler())
 
 
